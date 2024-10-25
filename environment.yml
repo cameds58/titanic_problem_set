@@ -1,10 +1,7 @@
 name: titanic_env
 channels:
   - conda-forge
-<<<<<<< HEAD
-=======
   - defaults
->>>>>>> f782dd3ae4a721001f2ed328dfddea3770c77504
 dependencies:
   - python=3.9
   - pandas
