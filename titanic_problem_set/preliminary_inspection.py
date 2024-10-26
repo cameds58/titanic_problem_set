@@ -1,16 +1,5 @@
 import pandas as pd
 import numpy as np
-from pathlib import Path
-import matplotlib.pyplot as plt
-from matplotlib.colors import ListedColormap
-import seaborn as sns
-from wordcloud import WordCloud, STOPWORDS
-
-from sklearn.model_selection import train_test_split
-from sklearn import metrics
-from sklearn.metrics import roc_auc_score
-from sklearn.ensemble import RandomForestClassifier
-
 
 def load_data(path: str) -> pd.DataFrame:
     return pd.read_csv(path)
