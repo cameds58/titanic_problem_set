@@ -108,8 +108,6 @@ def parse_names(row):
         print(f"Exception: {ex}")
     
     
-
-
 def process_name(df):
     """
     Extract information from Name column and create Family Name, Title, Given Name, Maiden Name columns
@@ -123,4 +121,54 @@ def process_name(df):
 
     df[["Family Name", "Title", "Given Name", "Maiden Name"]] = df.apply(lambda row: parse_names(row), axis=1)
     return df
+
+
+def set_family_type(df):
+    """
+    Create Family Type feature based on Family Size (Single, Small, Large)
+    
+    Args:
+    df (pd.DataFrame): DataFrame containing 'Family Size'
+    
+    Returns:
+    df (pd.DataFrame): DataFrame with 'Family Type' column added
+    """
+    df['Family Type'] = df['Family Size']
+    df.loc[df['Family Size'] == 1, 'Family Type'] = 'Single'
+    df.loc[(df['Family Size'] > 1) & (df['Family Size'] < 5), 'Family Type'] = 'Small'
+    df.loc[df['Family Size'] >= 5, 'Family Type'] = 'Large'
+    return df
+
+
+def set_titles(df):
+    """
+    Standardize Titles by unifying common titles (Mr, Mrs, Miss, Rare)
+    
+    Args:
+    df (pd.DataFrame): DataFrame containing 'Title'
+    
+    Returns:
+    df (pd.DataFrame): DataFrame with standardized 'Titles'
+    """
+    df['Titles'] = df['Title']
+    df['Titles'] = df['Titles'].replace(['Mlle.', 'Ms.'], 'Miss.')
+    df['Titles'] = df['Titles'].replace('Mme.', 'Mrs.')
+    df['Titles'] = df['Titles'].replace(
+        ['Lady.', 'the Countess.', 'Capt.', 'Col.', 'Don.', 'Dr.', 
+         'Major.', 'Rev.', 'Sir.', 'Jonkheer.', 'Dona.'], 'Rare'
+    )
+    return df
+
+
+def avg_survival_by_titles_and_sex(df):
+    """
+    Group by Titles, Sex and Survived, and calculate survival mean
+    
+    Args:
+    df (pd.DataFrame): DataFrame containing 'Titles', 'Sex', 'Survived'
+    
+    Returns:
+    pd.DataFrame: Grouped DataFrame with mean of survival rate
+    """
+    return df[['Titles', 'Sex', 'Survived']].groupby(['Titles', 'Sex'], as_index=False).mean()
     
