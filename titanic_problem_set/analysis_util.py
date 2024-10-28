@@ -159,6 +159,19 @@ def set_titles(df):
     )
     return df
 
+def set_sex(df):
+    """
+    Encode the 'Sex' column in the provided train and test datasets.
+
+    Parameters:
+    df (pd.DataFrame): DataFrame to map sex
+
+    Returns:
+    df (pd.DataFrame): DataFrame with sex 
+    """
+    df['Sex'] = df['Sex'].map({'female': 1, 'male': 0}).astype(int)
+    return df
+
 
 def avg_survival_by_titles_and_sex(df):
     """
