@@ -1,9 +1,9 @@
 from preliminary_inspection import load_data, find_missing_data, find_most_frequent, find_uniques
-from univariate_analysis import concat_train_test, set_family_size, set_age_interval, set_fare_interval,create_sex_Pclass,  parse_names, process_name
+from titanic_problem_set.analysis_util import concat_train_test, set_family_size, set_age_interval, set_fare_interval,create_sex_Pclass,  parse_names, process_name
 
-TRAIN_PATH = "titanic_problem_set/train.csv"
+TRAIN_PATH = "titanic_problem_set/data/train.csv"
+TEST_PATH = "titanic_problem_set/data/test.csv"
 
-TEST_PATH = "titanic_problem_set/test.csv"
 
 def main():
     # Load train and test data
