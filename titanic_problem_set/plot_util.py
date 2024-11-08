@@ -81,3 +81,24 @@ def plot_distribution(df: pd.DataFrame,
         fig.tight_layout()
 
     plt.show()
+
+
+def plot_bar(df: pd.DataFrame, 
+                x: str, 
+                y: str,
+                hue: str, 
+                title: str) -> None:
+    """
+    Creates a bar plot using seaborn.
+    Parameters:
+    df (pd.DataFrame): The DataFrame containing the data to plot.
+    x (str): The name of the column to be used for the x-axis.
+    y (str): The name of the column to be used for the y-axis.
+    hue (str): The name of the column to be used for color encoding.
+    title (str): The title of the plot.
+    Returns:
+    None
+    """
+    sns.barplot(x=x, hue=hue, data=df, y=y)
+    plt.title(title)
+    plt.show()

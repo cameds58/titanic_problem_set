@@ -8,6 +8,6 @@ dependencies:
   - numpy
   - matplotlib
   - seaborn
-  - scikit-learn
+  - scikit-learn=1.5
   - wordcloud
   - pathlib
